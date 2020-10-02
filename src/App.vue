@@ -8,21 +8,26 @@
     </ul>
 
     <mark-editor></mark-editor>
+    
+    <fetch-item></fetch-item>
 
 </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
+import FetchItem from './components/FetchItem.vue'
 import MarkEditor from './components/MarkEditor.vue';
 import ToDoItem from './components/ToDoItem.vue';
 import uniqueId from 'lodash.uniqueid'
+
 
 export default {
     name: 'app',
     components: {
         MarkEditor,
-        ToDoItem
+        ToDoItem,
+        FetchItem
     },
     data() {
         return {
