@@ -44,6 +44,8 @@ export default {
   },
   methods: {
     login() {
+      var _this = this;
+      console.log(this.$store.state);
       this.$axios
         .post("/login", {
           username: this.loginForm.username,
@@ -51,7 +53,11 @@ export default {
         })
         .then((successResponse) => {
           if (successResponse.data.code === 200) {
-            this.$router.replace({ path: "/index" });
+            _this.$store.commit("login", _this.loginForm);
+            var path = this.$route.query.redirect;
+            this.$router.replace({
+              path: path === "/" || path === undefined ? "/index" : path,
+            });
           }
         })
         .catch((failResponse) => {
@@ -63,17 +69,17 @@ export default {
 </script>
 
 <style>
-  #poster {
-    background:url("../assets/sot.png") no-repeat;
-    background-position: center;
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-    position: fixed;
-  }
-  body{
-    margin: 0px;
-  }
+#poster {
+  background: url("../assets/sot.png") no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  position: fixed;
+}
+body {
+  margin: 0px;
+}
 .login-container {
   border-radius: 15px;
   background-clip: padding-box;
